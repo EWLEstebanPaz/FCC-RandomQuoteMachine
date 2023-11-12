@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const QUOTEBANK = [
+           {
+            quote: "The story of life is quicker than the blink of an eye, the story of love is hello, goodbye",
+            author: "Jimi Hendrix"
+           }, {
+            quote: "Nothing is more difficult, and therefore more precious, than to be able to decide.",
+            author: "Napoleon Bonaparte"
+           }, {
+            quote: "Where the Mind is biggest, the Heart, the Senses, Magnanimity, Charity, Tolerance, Kindliness, and the rest of them scarcely have room to breathe.",
+            author: "Virginia Woolf"
+           }
+    ]
+    window.onload = init;
+    function init() {
+        generateQuote();  
+    }
+    function generateQuote() {
+        let quoteSize = QUOTEBANK.length;
+        let randomIndex = Math.floor(Math.random() * quoteSize);
+        let randomQuoteData = QUOTEBANK[randomIndex];
+
+        let twitterLink = "https://twitter.com/intent/tweet?hashtags=quotes&amp;related=freecodecamp&amp;text="
+
+
+        let quoteInApiFormat = randomQuoteData.quote.replace(/ /g, "%20");
+        twitterLink += quoteInApiFormat
+
+        let authorInApiFormat = randomQuoteData.author.replace(/ /g, "%20");
+        twitterLink += " - " + authorInApiFormat
+       
+        document.getElementById("tweet-quote").href = twitterLink;
+        document.getElementById("text").innerText = randomQuoteData.quote;
+        document.getElementById("author").innerText = randomQuoteData.author;  
+    }
+
+
+
+    </script>
+    <style>
+        * {
+            font-size: 1.5rem;
+            padding: 20px 20px 20px 20px; 
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <wrapper id="quote-box">
+        <div id="text"></div>
+        <div id="author"></div>
+        <button id="new-quote" onClick="generateQuote()">New Quote</button>
+        <a id="tweet-quote" target="_blank" href="#" class="button">Tweet Quote</a>
+
+    </wrapper> 
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+</html>
